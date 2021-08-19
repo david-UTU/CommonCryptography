@@ -66,6 +66,11 @@ def digraph():
     return render_template('/Simple/digraph.html')
 
 
+@app.route('/CommonTools/binary/')  # Binary converter page load
+def binary():
+    return render_template('/CommonTools/binary.html')
+
+
 @ app.route('/CommonTools/pStrength/')  # Password strength evaluator page
 def pStrength():
     return render_template('/CommonTools/pStrength.html')
@@ -152,6 +157,25 @@ def frequency():
     entry = f"Your character count totals: {result}"
     phraseCount = f"The phrase '{phrase}' appears {textChunk.count(phrase)} times"
     return render_template('/CommonTools/frequency.html', **locals())
+
+
+@app.route('/CommonTools/binaryEncode.html', methods=['POST'])
+def binaryEncode():
+    originalNonBinary = str(request.form.get('binaryEncrypt')).lower()
+    binaryMessage = ' '.join(format(ord(i), 'b') for i in originalNonBinary)
+    return render_template('/CommonTools/binaryEncode.html', **locals())
+
+
+@app.route('/CommonTools/binaryDecode.html', methods=['POST'])
+def binaryDecode():
+    originalBinary = str(request.form.get('binaryDecrypt'))
+    binaryValues = originalBinary.split()
+    binaryDecoded = ''
+    for i in binaryValues:
+        almostASCII = int(i, 2)
+        letter = chr(almostASCII)
+        binaryDecoded += letter
+    return render_template('/CommonTools/binaryDecode.html', **locals())
 
 
 @app.route('/Simple/digraphEncrypt/', methods=['POST'])
