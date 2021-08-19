@@ -12,7 +12,7 @@ This project takes common cryptography tools and encryption systems and displays
 ## Common Tools
   - Character frequency calculator: ✅
   - Base64 converter: ❌
-  - Binary converter: ❌
+  - Binary converter: ✅
   - Hexadecimal converter: ❌
   - Password strength calculator: ✅
   - Hamming error corrector: ❌
